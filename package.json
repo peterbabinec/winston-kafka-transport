@@ -1,7 +1,7 @@
 {
-  "name": "winston-kafka-transport",
-  "version": "1.0.0",
-  "description": "Transport logs from Winston to Kafka",
+  "name": "winston-kafka-transport-uber",
+  "version": "1.0.1",
+  "description": "Transport logs from Winston to Kafka with Uber",
   "repository": {
     "type": "git",
     "url": ""
