@@ -1,0 +1,21 @@
+{
+  "name": "winston-kafka-transport-uber",
+  "version": "1.0.1",
+  "description": "Transport logs from Winston to Kafka with Uber",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "ForeSee <dev@foresee.com>",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/foreseecode/winston-kafka-transport/issues"
+  },
+  "homepage": "https://github.com/foreseecode/winston-kafka-transport",
+  "dependencies": {
+    "kafka-node": "^2.3.2",
+    "underscore": "^1.8.3",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {}
+}
