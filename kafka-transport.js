@@ -1,5 +1,5 @@
 // the commented code below is optional - turn on debug chatter for node-kafka
-  
+
 // const kafkaLogging = require('kafka-node/logging');
 
 // function consoleLoggerProvider (name) {
@@ -13,15 +13,15 @@
 // }
 
 // kafkaLogging.setLoggerProvider(consoleLoggerProvider);
- 
+
 const Transport = require('winston').Transport,
   kafka = require('kafka-node'),
   _ = require('underscore');
 
 module.exports = class KafkaTransport extends Transport {
-  constructor (options) {
+  constructor(options) {
     super(options);
-    
+
     this.level = options.level || 'info';
     this.meta = options.meta || {};
 
@@ -30,24 +30,24 @@ module.exports = class KafkaTransport extends Transport {
     this.topic = options.topic;
 
     // Connect
-    this.client = new kafka.KafkaClient({kafkaHost: this.connectionString});
+    this.client = new kafka.KafkaClient({ kafkaHost: this.connectionString });
     this.producer = new kafka.Producer(this.client);
 
     this.producer.on('ready', function () {
       this.isConnected = true;
-      console.log('connected to kafka server');
+      console.log('Connected to kafka server');
     }.bind(this));
 
     this.producer.on('error', function (err) {
-        this.isConnected = false;
-        var msg = 'Cannot connect to kafka server';
-        console.error(msg, err);
+      this.isConnected = false;
+      var msg = 'Cannot connect to kafka server';
+      console.error(msg, err);
     }.bind(this));
   }
 
-  log (level, message, meta, callback) {
+  log(level, message, meta, callback) {
     if (this.isConnected) {
-  
+
       var payload = this.formatter({
         message: message,
         level: level,
@@ -61,7 +61,7 @@ module.exports = class KafkaTransport extends Transport {
 
       try {
         console.log('sending log to kafka', payloads);
-        this.producer.send(payloads, function(err, result) {
+        this.producer.send(payloads, function (err, result) {
           if (err) {
             console.error('Failed to send log to kafka', err);
           }

@@ -1,7 +1,7 @@
 {
   "name": "winston-kafka-transport",
-  "version": "0.1.0",
-  "description": "transport logs from winston to kafka",
+  "version": "1.0.0",
+  "description": "Transport logs from Winston to Kafka",
   "repository": {
     "type": "git",
     "url": ""
@@ -9,9 +9,9 @@
   "author": "ForeSee <dev@foresee.com>",
   "license": "",
   "bugs": {
-    "url": ""
+    "url": "https://github.com/foreseecode/winston-kafka-transport/issues"
   },
-  "homepage": "",
+  "homepage": "https://github.com/foreseecode/winston-kafka-transport",
   "dependencies": {
     "kafka-node": "^2.3.2",
     "underscore": "^1.8.3",
