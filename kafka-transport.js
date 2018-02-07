@@ -1,24 +1,9 @@
-// the commented code below is optional - turn on debug chatter for node-kafka
-
-// const kafkaLogging = require('kafka-node/logging');
-
-// function consoleLoggerProvider (name) {
-//   // do something with the name
-//   return {
-//     debug: console.info.bind(console),
-//     info: console.info.bind(console),
-//     warn: console.warn.bind(console),
-//     error: console.error.bind(console)
-//   };
-// }
-
-// kafkaLogging.setLoggerProvider(consoleLoggerProvider);
-
 const Transport = require('winston').Transport,
   kafka = require('kafka-node'),
+  kafkaLogging = require('kafka-node/logging'),
   _ = require('underscore');
 
-module.exports = class KafkaTransport extends Transport {
+class KafkaTransport extends Transport {
   constructor(options) {
     super(options);
 
@@ -74,3 +59,17 @@ module.exports = class KafkaTransport extends Transport {
     callback(null, true);
   }
 };
+
+const consoleLoggerProvider = function (name) {
+  return {
+    debug: console.info.bind(console),
+    info: console.info.bind(console),
+    warn: console.warn.bind(console),
+    error: console.error.bind(console)
+  };
+}
+
+// optional - uncomment to enable debug chatter for node-kafka
+// kafkaLogging.setLoggerProvider(consoleLoggerProvider);
+
+module.exports = KafkaTransport;
